@@ -111,7 +111,7 @@ header{
 
     height:100vh;
 
-    background:url("Photos/Generated\ image\ 1\ \(3\).png")
+    background:url("Generated\ image\ 1\ \(3\).png")
     center/cover no-repeat;
 
     position:relative;
@@ -356,7 +356,7 @@ header{
 
     position:relative;
 
-    background:url("Photos/cris-tagupa-qFWGqrpZhYU-unsplash.jpg") center/cover no-repeat;
+    background:url("cris-tagupa-qFWGqrpZhYU-unsplash.jpg") center/cover no-repeat;
 
     min-height:800px;
 
@@ -874,7 +874,7 @@ header{
         rgba(0,0,0,0.55),
         rgba(0,0,0,0.55)
     ),
-    url("Photos/Generated\ image\ 1\ \(3\).png")center/cover no-repeat;
+    url("Generated\ image\ 1\ \(3\).png")center/cover no-repeat;
 
     background-size: cover;
     background-position: center;
