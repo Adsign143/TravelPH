@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel PH</title>
+
+   
+        <script src="script.js" defer></script>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+        <!-- Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="style.css">
+     
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <a href="index.html"><img src="Photos/Logo 1.png" alt="Travel PH"></a>
+        </div>
+
+        <ul class="nav-links">
+
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About Ph</a></li>
+            <li><a href="destination.html">Destinations</a></li>
+            <li>
+                <a class="btn book-btn" href="Book.html">
+                    Book Now
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+        <h1>
+            Discover <br>
+            the beauty of Philippines
+        </h1>
+
+        <p>
+            Book now and create your next trip to the Philippines.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="Book.html" class="btn primary">
+                Book Now
+            </a>
+
+            <a href="destination.html" class="btn secondary">
+                Destinations
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DESTINATIONS ================= -->
+
+<section class="destinations" id="destinations">
+
+    <h2>Top Destinations</h2>
+
+    <div class="card-container">
+
+        <!-- Card 1 -->
+
+        <div class="card">
+
+            <img src="Photos/pexels-christian-paul-del-rosario-1076240.jpg" alt="El Nido">
+
+            <div class="card-content">
+
+                <div class="card-info">
+
+                    <h3>Coron, Palawan</h3>
+
+                    <span>₱2,500/pax</span>
+
+                </div>
+                    <li>Island Hopping</li>
+                    <li>Snorkeling and Scuba Diving</li>
+                    <li>Kayaking at Twin Lagoon</li>
+                    <li>Swimming at Kayangan Lake</li>
+                    <li>Shipwreck Diving (WWII Wrecks)</li>
+                <i class="fa-regular fa-heart"></i>
+                
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#elnidomodal">
+                     Book Now
+                </button>
+            </div>
+            
+        </div>
+
+        <!-- Card 2 -->
+
+        <div class="card">
+
+            <img src="Photos/pexels-shyshy-obligar-12926994.jpg" alt="Boracay">
+
+            <div class="card-content">
+
+                <div class="card-info">
+
+                    <h3>Boracay, Philippines</h3>
+
+                    <span>₱3,000/pax</span>
+
+                </div>
+                <li>Island Hopping</li>
+                 <li>Parasailing</li>
+                  <li>Snorkeling and Scuba Diving</li>
+                   <li>Helmet Diving</li>
+                    <li>Sunset Sailing (Paraw Sailing)</li>
+                <i class="fa-regular fa-heart"></i>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#boracaymodal">
+                     Book Now
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Card 3 -->
+
+        <div class="card">
+
+            <img src="Photos/pexels-nalz-15289296.jpg" alt="Bohol">
+
+            <div class="card-content">
+
+                <div class="card-info">
+
+                    <h3>Bohol, Philippines</h3>
+                       
+                    <span>₱2,500/pax</span>
+    
+                
+                </div>
+                     <li>Island Hopping</li>
+                     <li>Snorkeling and Scuba Diving</li>
+                     <li>Loboc River Cruise</li>
+                     <li>ATV Adventure at the Chocolate Hills</li>
+                     <li>Tarsier Watching</li>
+
+                <i class="fa-regular fa-heart"></i>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#boholmodal">
+                     Book Now
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="load-more-container">
+        <a href="destination.html"><button id="loadMoreBtn" class="load-btn">
+            Load More Destinations
+        </button>
+        </a>
+    </div>
+
+</section>
+
+
+<!-- ================= BOOK NOW ================= -->
+
+<section class="booking">
+
+    <div class="booking-text">
+
+        <h2>
+            Book now <br>
+            in just 3 easy steps!
+        </h2>
+
+        <div class="step">
+
+            <i class="fa-solid fa-square-check"></i>
+
+            <div>
+
+                <h4>Choose Destination</h4>
+
+                <p>
+                    Select your favorite location
+                    you want to visit.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <i class="fa-solid fa-file-circle-check"></i>
+
+            <div>
+
+                <h4>Make Payment</h4>
+
+                <p>
+                    Securely purchase the package
+                    that fits your budget.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            <div>
+
+                <h4>Enjoy Your Trip</h4>
+
+                <p>
+                    Prepare your bags and
+                    experience the beauty of
+                    the Philippines.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="booking-image">
+
+        <img src="Photos/stepss.png" alt="Booking">
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about" id="about">
+
+    <div class="about-overlay"></div>
+
+    <div class="about-content">
+        <h2>About the Philippines</h2>
+
+        <p>
+
+             The Philippines is a breathtaking Southeast Asian archipelago composed of more than 7,000 islands, offering a perfect blend of natural beauty, rich history, and vibrant culture. Home to over 110 million people, the country is known for its warm hospitality, diverse languages, including Filipino, English, and many regional dialects, as well as its fascinating cultural heritage shaped by Spanish and American influences.
+
+        </p>
+        <p>
+            From world-renowned white-sand beaches and crystal-clear waters to lush mountains, colorful marine life, and UNESCO World Heritage Sites, the Philippines is a destination filled with unforgettable experiences. Whether you're seeking adventure, relaxation, or cultural exploration, every island offers a unique journey that showcases the beauty and spirit of the Filipino people. 
+        </p>
+
+        
+
+    </div>
+
+</section>
+
+
+<!-- ================= SUBSCRIBE ================= -->
+
+<section class="subscribe">
+ <div class="gallery-container">
+        <img src="Photos/G1.jpg" alt="Destination 1"> 
+        <img src="Photos/G2.jpg" alt="Destination 2">
+        <img src="Photos/G3.jpg" alt="Destination 3">
+        <img src="Photos/G4.jpg" alt="Destination 4">
+        <img src="Photos/G5.jpg" alt="Destination 5">
+
+    </div>
+    <h2>Subscribe Now!</h2>
+
+    <p>Get our latest travel promos and updates.</p>
+
+    <form>
+
+        <input
+        type="email"
+        placeholder="Email Address"
+        required>
+
+        <button type="submit">
+
+            Sign Up
+
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Logo / About -->
+        <div class="footer-box">
+            <h2>Travel PH</h2>
+            <p>
+                Discover the beauty of the Philippines with unforgettable travel
+                experiences and affordable tour packages.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About PH</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                Andres Bonifacio College,
+                Dipolog City, Zamboanga del Norte,
+                Philippines
+            </p>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+639123456789">
+                    +63 912 345 6789
+                </a>
+            </p>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:travelph@gmail.com">
+                    travelph@gmail.com
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Travel PH. All Rights Reserved.
+        </p>
+
+        <div class="social-icons">
+
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+            <a href="#"><i class="fab fa-instagram"></i></a>
+
+            <a href="#"><i class="fab fa-twitter"></i></a>
+
+            <a href="#"><i class="fab fa-youtube"></i></a>
+
+        </div>
+
+    </div>
+
+        <div class="modal fade" id="elnidomodal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <!-- Header -->
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Body -->
+                            <div class="modal-body">
+
+                                <!-- Your division starts here -->
+                                <div class="p-3 border rounded">
+                                    <h3>Coron, Palawan</h3>
+                                    <p>
+                                        Coron, Palawan is a breathtaking island destination known for its crystal-clear lakes, towering limestone cliffs, and vibrant marine life. It is a paradise for nature lovers and adventure seekers, offering unforgettable experiences such as island hopping, snorkeling, and world-class diving.
+                                    </p>
+
+                                    <img src="Photos/pexels-christian-paul-del-rosario-1076240.jpg" alt="Boracay" width="720px">
+
+                                    <button class="btn btn-success mt-3">
+                                        Book Now
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="modal fade" id="boracaymodal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <!-- Header -->
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Body -->
+                            <div class="modal-body">
+
+                                <!-- Your division starts here -->
+                                <div class="p-3 border rounded">
+                                    <h3>Coron, Palawan</h3>
+                                    <p>
+                                        Coron, Palawan is a breathtaking island destination known for its crystal-clear lakes, towering limestone cliffs, and vibrant marine life. It is a paradise for nature lovers and adventure seekers, offering unforgettable experiences such as island hopping, snorkeling, and world-class diving.
+                                    </p>
+
+                                    <img src="Photos/pexels-shyshy-obligar-12926994.jpg" alt="Boracay" width="720px">
+
+                                    <button class="btn btn-success mt-3">
+                                        Book Now
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="modal fade" id="boholmodal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <!-- Header -->
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Body -->
+                            <div class="modal-body">
+
+                                <!-- Your division starts here -->
+                                <div class="p-3 border rounded">
+                                    <h3>Coron, Palawan</h3>
+                                    <p>
+                                        Coron, Palawan is a breathtaking island destination known for its crystal-clear lakes, towering limestone cliffs, and vibrant marine life. It is a paradise for nature lovers and adventure seekers, offering unforgettable experiences such as island hopping, snorkeling, and world-class diving.
+                                    </p>
+
+                                    <img src="Photos/pexels-nalz-15289296.jpg" alt="Boracay" width="720px">
+
+                                    <button class="btn btn-success mt-3">
+                                        Book Now
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <!-- Footer -->
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
