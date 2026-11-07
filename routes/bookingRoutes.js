@@ -73,19 +73,4 @@ router.post("/", async (req, res) => {
     }
 });
 
-// GET ALL BOOKINGS
-router.get("/", async (req, res) => {
-    try {
-        const bookings = await Booking.find();
-
-        res.json(bookings);
-
-    } catch (error) {
-        res.status(500).json({
-            message: "Failed to retrieve bookings",
-            error: error.message
-        });
-    }
-});
-
 module.exports = router;
