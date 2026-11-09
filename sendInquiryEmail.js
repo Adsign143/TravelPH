@@ -25,11 +25,24 @@ async function sendViaResend({ replyTo, subject, text }) {
             text
         }),
         signal: AbortSignal.timeout(10000)
+    }).catch((cause) => {
+        const error = new Error("Could not reach the Resend email API", { cause });
+        const code = cause.cause?.code || cause.code;
+        const reason = cause.name === "TimeoutError" ? "TIMEOUT" : (code || cause.name);
+        error.code = `RESEND_NETWORK_${reason}`;
+        throw error;
     });
 
     if (!response.ok) {
         const error = new Error("Resend rejected the inquiry email");
-        error.code = `RESEND_HTTP_${response.status}`;
+        const { name } = await response.json().catch(() => null) ?? {};
+        const errorNames = [
+            "invalid_api_key", "missing_api_key", "restricted_api_key", "validation_error",
+            "invalid_from_address", "invalid_access", "daily_quota_exceeded",
+            "monthly_quota_exceeded", "rate_limit_exceeded"
+        ];
+        const detail = errorNames.includes(name) ? ` ${name}` : "";
+        error.code = `RESEND_HTTP_${response.status}${detail}`;
         throw error;
     }
 }
@@ -37,7 +50,9 @@ async function sendViaResend({ replyTo, subject, text }) {
 let sendInquiryEmail = null;
 if (RESEND_API_KEY && emailPattern.test(CONTACT_INBOX || "")) {
     sendInquiryEmail = sendViaResend;
+    console.info("Inquiry email provider: Resend HTTPS.");
 } else if (mailer) {
+    console.info("Inquiry email provider: Gmail SMTP.");
     sendInquiryEmail = ({ replyTo, subject, text }) => mailer.sendMail({
         from: GMAIL_USER,
         to: CONTACT_INBOX,
