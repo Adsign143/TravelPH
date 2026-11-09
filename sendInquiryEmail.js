@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 
 const { GMAIL_USER, GMAIL_APP_PASSWORD, CONTACT_INBOX = GMAIL_USER } = process.env;
 const { RESEND_API_KEY, RESEND_FROM = "TravelPH <onboarding@resend.dev>" } = process.env;
+const resendKey = RESEND_API_KEY?.trim().replace(/^["'“‘]|["'”’]$/g, "").trim();
 const emailPattern = /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9-]+(?:\.[a-z0-9-]+)+$/i;
 const mailer = !RESEND_API_KEY && GMAIL_USER && GMAIL_APP_PASSWORD ? nodemailer.createTransport({
     service: "gmail",
@@ -11,10 +12,17 @@ const mailer = !RESEND_API_KEY && GMAIL_USER && GMAIL_APP_PASSWORD ? nodemailer.
 }) : null;
 
 async function sendViaResend({ replyTo, subject, text }) {
+    // A copied label or line break can make fetch reject the request before it is sent.
+    if (!/^re_[A-Za-z0-9._~+\/-]+=*$/.test(resendKey)) {
+        const error = new Error("RESEND_API_KEY must contain the Resend token only");
+        error.code = "RESEND_CONFIG_INVALID_KEY_FORMAT";
+        throw error;
+    }
+
     const response = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
-            Authorization: `Bearer ${RESEND_API_KEY}`,
+            Authorization: `Bearer ${resendKey}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -27,7 +35,7 @@ async function sendViaResend({ replyTo, subject, text }) {
         signal: AbortSignal.timeout(10000)
     }).catch((cause) => {
         const error = new Error("Could not reach the Resend email API", { cause });
-        const code = cause.cause?.code || cause.code;
+        const code = cause.cause?.code || cause.cause?.errors?.find(error => error.code)?.code || cause.code;
         const reason = cause.name === "TimeoutError" ? "TIMEOUT" : (code || cause.name);
         error.code = `RESEND_NETWORK_${reason}`;
         throw error;
