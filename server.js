@@ -12,16 +12,21 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.get("/healthz", (req, res) => res.json({ ok: true }));
 
 // MongoDB connection
-mongoose
-    .connect(process.env.MONGODB_URI)
-    .then(() => {
-        console.log("MongoDB connected successfully!");
-    })
-    .catch((error) => {
-        console.error("MongoDB connection error:", error.name, error.code || "");
-    });
+const mongoUri = process.env.MONGODB_URI?.trim();
+if (mongoUri) {
+    mongoose.connect(mongoUri)
+        .then(() => {
+            console.log("MongoDB connected successfully!");
+        })
+        .catch((error) => {
+            console.error("MongoDB connection error:", error.name, error.code || "");
+        });
+} else {
+    console.warn("MONGODB_URI is missing. MongoDB bookings are unavailable.");
+}
 
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/contact", contactRoutes);
@@ -39,6 +44,6 @@ for (const file of [
 // Server
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server listening on port ${PORT}`);
 });

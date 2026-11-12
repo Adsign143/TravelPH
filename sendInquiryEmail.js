@@ -1,15 +1,34 @@
+const { lookup } = require("node:dns/promises");
 const nodemailer = require("nodemailer");
 
 const { GMAIL_USER, GMAIL_APP_PASSWORD, CONTACT_INBOX = GMAIL_USER } = process.env;
 const { RESEND_API_KEY, RESEND_FROM = "TravelPH <onboarding@resend.dev>" } = process.env;
 const resendKey = RESEND_API_KEY?.trim().replace(/^["'“‘]|["'”’]$/g, "").trim();
 const emailPattern = /^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9-]+(?:\.[a-z0-9-]+)+$/i;
-const mailer = !RESEND_API_KEY && GMAIL_USER && GMAIL_APP_PASSWORD ? nodemailer.createTransport({
-    service: "gmail",
-    auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
-    connectionTimeout: 10000,
-    socketTimeout: 15000
-}) : null;
+const gmailConfigured = !RESEND_API_KEY && GMAIL_USER && GMAIL_APP_PASSWORD;
+
+async function sendViaGmail({ replyTo, subject, text }) {
+    const servername = "smtp.gmail.com";
+    // Use the system resolver while verifying Gmail's hostname over TLS.
+    const { address } = await lookup(servername, { family: 4 });
+    const mailer = nodemailer.createTransport({
+        host: address,
+        port: 465,
+        secure: true,
+        servername,
+        auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 15000
+    });
+    return mailer.sendMail({
+        from: GMAIL_USER,
+        to: CONTACT_INBOX,
+        replyTo: { address: replyTo },
+        subject,
+        text
+    });
+}
 
 async function sendViaResend({ replyTo, subject, text }) {
     // A copied label or line break can make fetch reject the request before it is sent.
@@ -59,15 +78,9 @@ let sendInquiryEmail = null;
 if (RESEND_API_KEY && emailPattern.test(CONTACT_INBOX || "")) {
     sendInquiryEmail = sendViaResend;
     console.info("Inquiry email provider: Resend HTTPS.");
-} else if (mailer) {
+} else if (gmailConfigured) {
     console.info("Inquiry email provider: Gmail SMTP.");
-    sendInquiryEmail = ({ replyTo, subject, text }) => mailer.sendMail({
-        from: GMAIL_USER,
-        to: CONTACT_INBOX,
-        replyTo: { address: replyTo },
-        subject,
-        text
-    });
+    sendInquiryEmail = sendViaGmail;
 } else {
     console.warn("Inquiry emails are disabled. Set RESEND_API_KEY and CONTACT_INBOX, or configure Gmail SMTP.");
 }

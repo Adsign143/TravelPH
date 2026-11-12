@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: travelph
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGODB_URI
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CONTACT_INBOX
+        sync: false
+      - key: HUBSPOT_ACCESS_TOKEN
+        sync: false
